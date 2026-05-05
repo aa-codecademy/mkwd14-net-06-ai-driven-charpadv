@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avenga.OopAdv.Class01.Task01.App", "Avenga.OopAdv.Class01.Task01.App\Avenga.OopAdv.Class01.Task01.App.csproj", "{F146BACA-5601-429B-AD6C-B8844D478770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avenga.OopAdv.Class01.Task1.Logic", "Avenga.OopAdv.Class01.Task1.Logic\Avenga.OopAdv.Class01.Task1.Logic.csproj", "{27EBEDE2-DA71-42C6-8BE7-D2DC2C0C6614}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F146BACA-5601-429B-AD6C-B8844D478770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F146BACA-5601-429B-AD6C-B8844D478770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F146BACA-5601-429B-AD6C-B8844D478770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F146BACA-5601-429B-AD6C-B8844D478770}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27EBEDE2-DA71-42C6-8BE7-D2DC2C0C6614}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27EBEDE2-DA71-42C6-8BE7-D2DC2C0C6614}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27EBEDE2-DA71-42C6-8BE7-D2DC2C0C6614}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27EBEDE2-DA71-42C6-8BE7-D2DC2C0C6614}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E7256462-7C7E-41EB-9464-0593177FF38F}
+	EndGlobalSection
+EndGlobal
