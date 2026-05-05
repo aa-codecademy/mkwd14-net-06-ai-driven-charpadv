@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avenga.OopAdv.Class01.Task2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avenga.OopAdv.Class01.Task2.Logic", "Avenga.OopAdv.Class01.Task2.Logic\Avenga.OopAdv.Class01.Task2.Logic.csproj", "{1E0887C4-2098-4211-B69E-889860E9D4EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avenga.OopAdv.Class01.Task03.App", "Avenga.OopAdv.Class01.Task03.App\Avenga.OopAdv.Class01.Task03.App.csproj", "{D32BF4C5-7428-4951-B5DA-C296DD6C396F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avenga.OopAdv.Class01.Task03.Logic", "Avenga.OopAdv.Class01.Task03.Logic\Avenga.OopAdv.Class01.Task03.Logic.csproj", "{57C50416-A9CB-4B88-B940-B0A718DCB1F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{1E0887C4-2098-4211-B69E-889860E9D4EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E0887C4-2098-4211-B69E-889860E9D4EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E0887C4-2098-4211-B69E-889860E9D4EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32BF4C5-7428-4951-B5DA-C296DD6C396F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32BF4C5-7428-4951-B5DA-C296DD6C396F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32BF4C5-7428-4951-B5DA-C296DD6C396F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32BF4C5-7428-4951-B5DA-C296DD6C396F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57C50416-A9CB-4B88-B940-B0A718DCB1F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57C50416-A9CB-4B88-B940-B0A718DCB1F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57C50416-A9CB-4B88-B940-B0A718DCB1F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57C50416-A9CB-4B88-B940-B0A718DCB1F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
