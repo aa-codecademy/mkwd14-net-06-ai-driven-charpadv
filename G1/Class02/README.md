@@ -382,8 +382,3 @@ What are common mistakes when combining abstract classes and interfaces?
 ```
 
 ---
-
-# ❓ Questions?
-
-You can find us at  
-trainer@mail.com  

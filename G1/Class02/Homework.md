@@ -1,5 +1,7 @@
 # Class 2 Homework 📒
 
+Trainer: `Ilija Mitev` <br>
+Contact: `ilija.mitev3@gmail.com`
 
 ## Task #1 - Searchable
 
