@@ -1,8 +1,9 @@
 ﻿using Domain.BaseEntity;
+using Domain.Interfaces;
 
 namespace Domain.Models
 {
-    public class Developer : Person
+    public class Developer : Person, IDeveloper
     {
         //public int Id { get; set; }
         //public string FirstName { get; set; }
@@ -26,5 +27,16 @@ namespace Domain.Models
             YearsOfExperience = yearsOfExperience;
         }
 
+        public override string GetInfo()
+        {
+            return $"{GetFullName()} ({Age}) - {YearsOfExperience} years of experience. Knows: {string.Join(", ", ProgrammingLanguages)}";
+        }
+
+        public void Code()
+        {
+            Console.WriteLine("Tak tak tak...");
+            Console.WriteLine("Writes prompt to Claude...");
+            Console.WriteLine("Ctrl C + Ctrl V");
+        }
     }
 }
