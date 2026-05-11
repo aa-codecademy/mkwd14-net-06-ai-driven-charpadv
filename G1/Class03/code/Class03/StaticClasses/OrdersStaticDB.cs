@@ -23,7 +23,6 @@ namespace StaticClasses
 
         //}
 
-
         // NOTE: Static classes can have only static constructor
         // It will only execute once, the first time this class is used, when the app is started
         // Static constructor does not have access modifier
@@ -54,7 +53,31 @@ namespace StaticClasses
 
             orderIdCounter = Orders.Max(o => o.Id);
         }
+        
+        public static void ListUsers()
+        {
+            for (int i = 0; i < Users.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {Users[i].Username}");
+            }
+        }
 
+        public static void InsertOrder(Order order, int userId)
+        {
+            User user = Users.SingleOrDefault(u => u.Id == userId);
+            if (user is null)
+            {
+                ConsoleHelper.WriteError("User not found!");
+                return;
+            }
+
+            order.Id = ++orderIdCounter; // Auto-incrementing the order ID
+            Orders.Add(order);
+            user.Orders.Add(order);
+
+            ConsoleHelper.WriteInColor($"Order successfully created!", ConsoleColor.Green);
+            ConsoleHelper.WriteInColor($"Total number of orders: {Orders.Count}", ConsoleColor.DarkGreen);
+        }
 
     }
 }
