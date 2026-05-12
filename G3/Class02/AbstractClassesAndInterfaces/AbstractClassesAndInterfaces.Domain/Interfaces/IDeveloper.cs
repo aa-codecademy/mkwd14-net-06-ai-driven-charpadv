@@ -1,6 +1,6 @@
 ﻿namespace AbstractClassesAndInterfaces.Domain.Interfaces
 {
-	internal interface IDeveloper
+	public interface IDeveloper
 	{
 		void Code();
 	}
