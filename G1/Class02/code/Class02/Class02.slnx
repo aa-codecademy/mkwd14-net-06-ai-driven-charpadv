@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Abstractions/Abstractions.csproj" />
+  <Project Path="BoxingUnboxing/BoxingUnboxing.csproj" Id="d87a3138-50ff-431f-b84d-7ac3d2e23604" />
+  <Project Path="Domain/Domain.csproj" />
+</Solution>
