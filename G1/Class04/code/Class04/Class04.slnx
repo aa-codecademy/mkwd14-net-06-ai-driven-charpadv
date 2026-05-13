@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="ExtensionMethods/ExtensionMethods.csproj" />
   <Project Path="Generics/Generics.csproj" />
 </Solution>

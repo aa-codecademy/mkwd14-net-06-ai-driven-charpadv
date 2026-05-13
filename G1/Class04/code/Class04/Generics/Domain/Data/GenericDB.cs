@@ -1,8 +1,9 @@
 ﻿using Generics.Domain.Interfaces;
+using Generics.Domain.Models;
 
 namespace Generics.Domain.Data
 {
-    public class GenericDB<T> : IGenericDB<T>
+    public class GenericDB<T> : IGenericDB<T> where T : BaseEntity
     {
         private List<T> Db;
 
@@ -16,14 +17,15 @@ namespace Generics.Domain.Data
             Console.WriteLine($"\nPrinting items for {typeof(T).Name} DB:");
             foreach (T item in Db)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.GetInfo());
             }
         }
 
         public T GetById(int id)
         {
-            //T item = Db.FirstOrDefault(i => i.Id)
-            return Db.First();
+            T item = Db.FirstOrDefault(i => i.Id == id);
+            ArgumentNullException.ThrowIfNull(item, $"No item with id {id} found");
+            return item;
         }
 
         // Avoid using indexes for retrieving data, since it can produce unexpected behaviour (such as ArgumentOutOfRangeException)
@@ -40,7 +42,8 @@ namespace Generics.Domain.Data
 
         public void RemoveById(int id)
         {
-            
+            T item = GetById(id);
+            Db.Remove(item);
         }
     }
 }

@@ -93,4 +93,7 @@ ProductsDb.Insert(new Product { Id = 2, Title = "USB", Description = "64MB" });
 OrdersDb.PrintAll();
 ProductsDb.PrintAll();
 
+//GenericDB<string> StringsDb = new GenericDB<string>();
+//GenericDB<Developer> DevelopersDb = new GenericDB<Developer>();
+
 #endregion
