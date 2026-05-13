@@ -1,4 +1,6 @@
-﻿using Generics.Helpers;
+﻿using Generics.Domain.Data;
+using Generics.Domain.Models;
+using Generics.Helpers;
 
 Console.WriteLine("Hello, World!");
 
@@ -76,6 +78,19 @@ Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine("\n================ Generic Classes ================\n");
 Console.ResetColor();
 
+GenericDB<Order> OrdersDb = new GenericDB<Order>();
+GenericDB<Product> ProductsDb = new GenericDB<Product>();
 
+// Inserting data
+OrdersDb.Insert(new Order { Id = 1, Address = "Bob St.", Receiver = "Bob" });
+OrdersDb.Insert(new Order { Id = 2, Address = "John St.", Receiver = "John" });
+OrdersDb.Insert(new Order { Id = 3, Address = "Jane St.", Receiver = "Jane" });
+
+ProductsDb.Insert(new Product { Id = 1, Title = "Mouse", Description = "Wireless mouse" });
+ProductsDb.Insert(new Product { Id = 2, Title = "USB", Description = "64MB" });
+
+// Printing data
+OrdersDb.PrintAll();
+ProductsDb.PrintAll();
 
 #endregion
