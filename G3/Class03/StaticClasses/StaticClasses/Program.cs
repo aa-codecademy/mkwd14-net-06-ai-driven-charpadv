@@ -1,7 +1,6 @@
 ﻿using StaticClasses.Domain;
 using StaticClasses.Domain.Helpers;
 using StaticClasses.Domain.Models;
-using System.ComponentModel.Design;
 
 //when we want to access the members of a static class we use the name of the class . the name of the member
 int validate = TextHelper.ValidateInput("12");
