@@ -24,7 +24,7 @@ namespace Polymorphism.Domain
 		//now when calling the PetStatus method if we send it a string and a Cat in that order it will know which method to call
 		public void PetStatus(string name, Cat cat)
 		{
-			Console.WriteLine($"Hello {name}. The {cat.Name} is {cat.Age} years old");
+			Console.WriteLine($"Hello {name}. The {cat.Name} is {cat.GetAge()} years old");
 		}
 
 		//ERROR
@@ -39,7 +39,7 @@ namespace Polymorphism.Domain
 		//The order of the params is important
 		public void PetStatus(Cat cat, string name)
 		{
-			Console.WriteLine($"Hello {name}. The {cat.Name} is {cat.Age} years old");
+			Console.WriteLine($"Hello {name}. The {cat.Name} is {cat.GetAge()} years old");
 		}
 
 		//same name, also two params, but here first param is of type string and the second one is of type Dog

@@ -31,5 +31,31 @@ namespace Generics.Domain
 			//because T inherits from BaseEntity, T will always have a property Id
 			return items.FirstOrDefault(x => x.Id == id);
 		}
+
+		//Create
+		public void Add(T item)
+		{
+			if(item != null)
+			{
+				items.Add(item);
+				Console.WriteLine("The item was added");
+			}
+		}
+
+
+		public void RemoveById(int id)
+		{
+			//item to remove
+			T itemToRemove = items.FirstOrDefault(x => x.Id == id);
+			if(itemToRemove != null)
+			{
+				items.Remove(itemToRemove); //we pass the whole object that we want to remove from the list
+				Console.WriteLine("The item was removed");
+			}
+			else
+			{
+				Console.WriteLine($"There is no member with id {id}");
+			}
+		}
 	}
 }
