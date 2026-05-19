@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryBeingFit", "TryBeingFit\TryBeingFit.csproj", "{308F41A4-3264-4B8C-BE23-2A52FF320844}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryBeingFit.Domain", "TryBeingFit.Domain\TryBeingFit.Domain.csproj", "{BE374569-AF7B-49C2-A743-D266BFFAA966}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{308F41A4-3264-4B8C-BE23-2A52FF320844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308F41A4-3264-4B8C-BE23-2A52FF320844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308F41A4-3264-4B8C-BE23-2A52FF320844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308F41A4-3264-4B8C-BE23-2A52FF320844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE374569-AF7B-49C2-A743-D266BFFAA966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE374569-AF7B-49C2-A743-D266BFFAA966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE374569-AF7B-49C2-A743-D266BFFAA966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE374569-AF7B-49C2-A743-D266BFFAA966}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B3CF28A4-FAF4-43EA-A3BE-8155E3FF4036}
+	EndGlobalSection
+EndGlobal
