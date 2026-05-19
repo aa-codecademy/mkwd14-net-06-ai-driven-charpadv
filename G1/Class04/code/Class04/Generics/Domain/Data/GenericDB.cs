@@ -3,6 +3,7 @@ using Generics.Domain.Models;
 
 namespace Generics.Domain.Data
 {
+    // using 'where' keyword to restrict the type of T to be only BaseEntity or its derived classes
     public class GenericDB<T> : IGenericDB<T> where T : BaseEntity
     {
         private List<T> Db;
