@@ -45,6 +45,7 @@ string? john2Name = names.Find(name =>
 
 // var sum = (num1, num2) => num2 + num2;
 
+
 #region Func
 
 Console.ForegroundColor = ConsoleColor.Blue;
@@ -105,6 +106,7 @@ Console.WriteLine(getPersonName(bob));
 
 
 #region Action
+
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine("\n================== Action ==================\n");
 Console.ResetColor();
@@ -112,14 +114,72 @@ Console.ResetColor();
 
 // Example of an action without parameters
 Action printHello = () => Console.WriteLine("Hello");
+printHello();
 
+Action<string> printRed = word =>
+{
+    Console.ForegroundColor = ConsoleColor.DarkRed;
+    Console.WriteLine(word);
+    Console.ResetColor();
+    // return word;
+};
 
+printRed("Something went wrong!");
+
+Action<string, ConsoleColor> printInColor = (text, color) =>
+{
+    Console.ForegroundColor = color;
+    Console.WriteLine(text);
+    Console.ResetColor();
+};
+
+printInColor("This is blue text", ConsoleColor.Blue);
+printInColor("This is green text", ConsoleColor.Green);
 
 #endregion
 
 
+#region Predicate
+printInColor("\n================== Predicate ==================\n", ConsoleColor.DarkYellow);
+Predicate<Person> isActive = person => person.IsActive;
+Person bob2 = new();
+Console.WriteLine(isActive(bob2));
+#endregion
 
 
+#region Delegates with hof and LINQ
+
+printInColor("\n================== Func & Action with hof and LINQ ==================\n", ConsoleColor.DarkMagenta);
+
+string foundBob = names.Find(n => n == "Bob");
+
+Predicate<string> isJill = n => n == "Jill";
+string foundJill = names.Find(isJill);
+
+Func<string, bool> isJillFunc = n => n == "Jill";
+string foundJillFirst = names.FirstOrDefault(isJillFunc);
+
+
+Func<string, bool> nameStartsWithJ = n => n.StartsWith('J');
+
+// Same thing, different syntax !!!
+List<string> namesWithJ = names.Where(nameStartsWithJ).ToList(); // best option
+List<string> namesWithJ2 = names.Where(n => nameStartsWithJ(n)).ToList();
+List<string> namesWithJ3 = names.Where(n => n.StartsWith('J')).ToList();
+List<string> namesWithJ4 = names.Where(n =>
+{
+    if (n.StartsWith('J'))
+    {
+        return true;
+    }
+    return false;
+}).ToList();
+
+
+namesWithJ.ForEach(n => Console.WriteLine(n));
+namesWithJ.ForEach(Console.WriteLine); // same thing as above, simpler syntax
+
+#endregion
 
 
 Console.ReadLine();
