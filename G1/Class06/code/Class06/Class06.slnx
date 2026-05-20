@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AnonymousMethods/AnonymousMethods.csproj" />
+  <Project Path="LinqMethods/LinqMethods.csproj" />
+</Solution>
