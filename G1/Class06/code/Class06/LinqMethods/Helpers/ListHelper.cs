@@ -4,9 +4,9 @@ namespace LinqMethods.Helpers
 {
     public static class ListHelper
     {
-        public static void PrintSimple<T>(this List<T> list)
+        public static void PrintSimple<T>(this IEnumerable<T> list)
         {
-            Console.WriteLine("Printing List...");
+            Console.WriteLine("Printing Collection...");
             Console.WriteLine("------------------------------");
             foreach (T item in list)
             {
@@ -15,7 +15,7 @@ namespace LinqMethods.Helpers
             Console.WriteLine("------------------------------");
         }
 
-        public static void PrintEntities<T>(this List<T> list) where T : BaseEntity
+        public static void PrintEntities<T>(this IEnumerable<T> list) where T : BaseEntity
         {
             Console.WriteLine($"Printing {typeof(T).Name}s...");
             Console.WriteLine("------------------------------");
