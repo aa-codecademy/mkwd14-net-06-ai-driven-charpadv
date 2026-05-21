@@ -47,7 +47,7 @@ namespace TryBeingFit.Domain.Database
 			//we can have a property LastUsedId where we will keep the last used id and increment it for each next item
 			//or we can access the last item of the list using LastOrDefault, take its id and increment it by one for the new item
 			int? id = items.LastOrDefault()?.Id; //LastOrDefault can have the value null. In that case, the id will not be accessed (null.Id). We add the ? to avoid exceptions and to make the int nullable
-			entity.Id = id.HasValue ? id.Value : 1; //same as: id != null ? id : 1
+			entity.Id = id.HasValue ? id.Value + 1 : 1; //same as: id != null ? id : 1
 			items.Add(entity);
 			return entity.Id;
 		}
