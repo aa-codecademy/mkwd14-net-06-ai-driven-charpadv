@@ -1,6 +1,7 @@
 # 🧠 Class 7 – Events and Delegates
 
-Trainer - Full Name Here  
+Trainer: Ilija Mitev <br>
+Contact: ilija.mitev3@gmail.com
 
 ---
 
