@@ -37,14 +37,14 @@ firstNames.PrintSimple();
 IEnumerable<Student> programmingStudentsSqlLike = from student in SEDC.Students
                                                   where student.IsPartTime
                                                   && (from subject in student.Subjects
-                                                      where subject.Type == Academy.Programming
+                                                      where subject.Academy == Academy.Programming
                                                       select subject).Count() != 0
                                                   select student;
 
 // Lambda complex example
 List<Student> programmingStudentsLambda = SEDC.Students
     .Where(s => s.IsPartTime
-    && s.Subjects.Any(sub => sub.Type == Academy.Programming))
+    && s.Subjects.Any(sub => sub.Academy == Academy.Programming))
     .ToList();
 
 
@@ -57,16 +57,26 @@ ConsoleHelper.PrintInColor("\n================== First/Single/Last (OrDefault) =
 // Single => Gets the only element from list, if more than one elements or no elements will throw error
 // SingleOrDefault => Gets the only element from the list, if no elements will return default value, if more than one will throw error
 
-Student petko = SEDC.Students.FirstOrDefault(s => s.FirstName == "Petko");
+Student petko = SEDC.Students.FirstOrDefault(s => s.FirstName == "Academy");
 
 //Student bob = SEDC.Students.SingleOrDefault(s => s.FirstName == "Bob");
-
 
 
 ConsoleHelper.PrintInColor("\n================== Select Many ==================\n", ConsoleColor.Red);
 // It flatens list of lists
 // Flattening => When we make one list out of multiple lists of the same type
 
+// Example: subjects of all part-time students
+
+List<List<Subject>> partTimeStudentSubjects = SEDC.Students
+    .Where(s => s.IsPartTime)
+    .Select(s => s.Subjects)
+    .ToList();
+
+List<Subject> partTimeStudentSubjectsFlat = SEDC.Students
+    .Where(s => s.IsPartTime)
+    .SelectMany(s => s.Subjects)
+    .ToList();
 
 
 ConsoleHelper.PrintInColor("\n================== Distinct/DistinctBy ==================\n", ConsoleColor.Yellow);
@@ -78,6 +88,12 @@ List<string> distinctStudentNames = SEDC.Students
     .Distinct()
     .ToList();
 distinctStudentNames.PrintSimple();
+
+List<Subject> partTimeStudentSubjectsFlatDistinct = SEDC.Students
+    .Where(s => s.IsPartTime)
+    .SelectMany(s => s.Subjects)
+    .DistinctBy(s => s.Title)
+    .ToList();
 
 
 ConsoleHelper.PrintInColor("\n================== Any/All ==================\n", ConsoleColor.Green);
@@ -93,15 +109,14 @@ bool hasBob = SEDC.Students.Any(s => s.FirstName == "Bob");
 bool areAllAdults = SEDC.Students.All(s => s.Age >= 18);
 
 
-
-
 ConsoleHelper.PrintInColor("\n================== Except ==================\n", ConsoleColor.Red);
 // Creates a new collection that is missing some particular items
 // It returns IEnumerable of the same type as the original collection
 
-
-
-
+List<Student> exceptPartTime = SEDC.Students
+    .Except(SEDC.Students.Where(x => x.IsPartTime))
+    .ToList();
+exceptPartTime.PrintEntities();
 
 
 ConsoleHelper.PrintInColor("\n================== OrderBy/ThenBy (Descending) ==================\n", ConsoleColor.Yellow);
@@ -110,26 +125,60 @@ ConsoleHelper.PrintInColor("\n================== OrderBy/ThenBy (Descending) ===
 // Can have multiple levels of ordering with the ThenBy and ThenByDescending methods
 // Returns IEnumerable of the same type as the original collection
 
+List<Student> sortedStudentsAsc = SEDC.Students
+    .OrderBy(s => s.FirstName)
+    .ToList();
 
+List<Student> sortedStudentsDesc = SEDC.Students
+    .OrderByDescending(s => s.FirstName)
+    .ToList();
 
+sortedStudentsAsc.PrintEntities();
+//sortedStudentsDesc.PrintEntities();
 
+List<Student> sortedStudentsAscThenBy = SEDC.Students
+    .OrderBy(s => s.FirstName)
+    .ThenByDescending(s => s.Age)
+    .ThenBy(s => s.Id)
+    .ToList();
 
-
+sortedStudentsAscThenBy.PrintEntities();
 
 
 ConsoleHelper.PrintInColor("\n================== GroupBy ==================\n", ConsoleColor.Green);
 // Used to group elements of a sequence based on a key
 // It returns a collection of IGrouping<TKey, TElement> objects, where each IGrouping object represents a group and contains a key and a sequence of elements that share that key.
 
+// Example: Group subjects by academy
+List<IGrouping<Academy, Subject>> groupedSubjectsByAcademy = SEDC.Subjects
+    .GroupBy(sub => sub.Academy)
+    .ToList();
 
+foreach (IGrouping<Academy, Subject> academy in groupedSubjectsByAcademy)
+{
+    Console.WriteLine($"\n===== Printing Academy {academy.Key} =====");
+    // we can use the academy variable to directly access the subjects in that academy because the IGrouping object implements IEnumerable of the type of the elements in the group, in this case Subject
+    foreach (Subject subject in academy)
+    {
+        Console.WriteLine(subject.GetInfo());
+    }
+}
 
+// Example: Group subjects by academy but only return the titles of the subjects
+List<IGrouping<Academy, string>> groupedSubjectsTitlesByAcademy = SEDC.Subjects
+    .GroupBy(sub => sub.Academy, s => s.Title) // the second argument in GroupBy is the selector for the value of the grouping, in this case we want only the title of the subject
+    .ToList();
 
-
-
-
+foreach (IGrouping<Academy, string> academy in groupedSubjectsTitlesByAcademy)
+{
+    Console.WriteLine($"\n===== Printing Academy {academy.Key} subjects =====");
+    foreach (string subject in academy)
+    {
+        Console.WriteLine(subject);
+    }
+}
 
 Console.ReadLine();
-
 
 /* 
     MORE USEFUL LINQ METHODS
