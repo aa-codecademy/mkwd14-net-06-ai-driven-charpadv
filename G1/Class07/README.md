@@ -335,10 +335,3 @@ How should I structure publisher and subscriber step by step?
 ```
 What are common mistakes when working with events?
 ```
-
----
-
-# ❓ QUESTIONS?
-
-You can find us at  
-trainer@mail.com  
