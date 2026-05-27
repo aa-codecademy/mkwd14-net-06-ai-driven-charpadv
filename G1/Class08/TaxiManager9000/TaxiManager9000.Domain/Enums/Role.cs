@@ -2,7 +2,7 @@ namespace TaxiManager9000.Domain.Enums;
 
 public enum Role
 {
-    Administrator,
-    Manager,
-    Maintenance
+    Administrator = 1,
+    Manager = 2,
+    Maintenance = 3
 }

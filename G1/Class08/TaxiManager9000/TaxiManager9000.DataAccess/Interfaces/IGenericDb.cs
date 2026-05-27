@@ -9,5 +9,6 @@ namespace TaxiManager9000.DataAccess.Interfaces
         int Add(T entity);
         bool Update(T entity);
         bool RemoveById(int id);
+        List<T> FilterBy(Func<T, bool> filter);
     }
 }

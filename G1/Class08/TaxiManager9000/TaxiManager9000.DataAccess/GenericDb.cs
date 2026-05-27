@@ -6,6 +6,7 @@ namespace TaxiManager9000.DataAccess
     public class GenericDb<T> : IGenericDb<T> where T : BaseEntity
     {
         private List<T> _db;
+        private int _idCounter;
 
         public GenericDb()
         {
@@ -14,27 +15,52 @@ namespace TaxiManager9000.DataAccess
 
         public List<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _db;
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _db.FirstOrDefault(e => e.Id == id);
         }
 
         public int Add(T entity)
         {
-            throw new NotImplementedException();
+            entity.Id = ++_idCounter;
+            _db.Add(entity);
+            return entity.Id;
         }
 
         public bool Update(T entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                T entityDb = GetById(entity.Id);
+                entityDb = entity;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool RemoveById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                T entity = GetById(id);
+                _db.Remove(entity);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public List<T> FilterBy(Func<T, bool> filter)
+        {
+            return _db.Where(filter).ToList();
         }
     }
 }
