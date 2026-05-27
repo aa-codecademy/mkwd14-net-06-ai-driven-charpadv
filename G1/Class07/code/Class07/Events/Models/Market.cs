@@ -51,5 +51,18 @@ namespace Events.Models
             OnPromotionSent?.Invoke(ProductTypeOnPromotion);
         }
 
+        // Unsubscribes a user from promotions.
+        // Removes the provided method from the Promotions event,
+        // removes the user's email from the subscribers list, and stores the user's reason.
+        public void UnsubscribeFromPromotions(
+            PromotionHandler promotionHandler, 
+            string email, 
+            string reason)
+        {
+            OnPromotionSent -= promotionHandler;
+            SubscribersEmails.Remove(email);
+            UnsubscribeReasons.Add(reason);
+        }
+
     }
 }

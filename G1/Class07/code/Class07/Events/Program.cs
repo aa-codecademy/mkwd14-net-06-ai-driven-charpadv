@@ -22,11 +22,16 @@ market.SubscribeForPromotion(user1.ReadPromotion, user1.Email);
 market.SubscribeForPromotion(user2.ReadPromotion, user2.Email);
 
 // Send promotions
-market.SendPromotions();
+// market.SendPromotions();
 
 // Subscribe user3 for promotion
 market.SubscribeForPromotion(user3.ReadPromotion, user3.Email);
 // Send promotions (again)
+market.SendPromotions();
+
+market.UnsubscribeFromPromotions(user1.ReadPromotion, user1.Email, "I don't like your promotions!");
+// The user1 (Bob Bobsky) will no longer receive promotions...
+
 market.SendPromotions();
 
 Console.ReadLine();
