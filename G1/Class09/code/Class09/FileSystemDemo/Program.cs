@@ -33,16 +33,109 @@ string classReadmeRelativePath = @"..\..\..\..\..\..\README.md";
 
 #region Directory
 ConsoleHelper.WriteInColor("\n================== DIRECTORY (Folder) ==================\n", ConsoleColor.Cyan);
+// The Directory class provides static methods to create, move, delete, and query folders 
 
+// ===> Get Current Directory
+string currentDirectory = Directory.GetCurrentDirectory();
+Console.WriteLine($"Current Directory: {currentDirectory}");
 
+// ===> Check if a folder exists
+string testFolderPath = @"..\..\..\TestFolder";
 
+bool testFolderExists = Directory.Exists(testFolderPath);
 
+Console.WriteLine("The folder 'TestFolder' exists: {0}", testFolderExists);
 
+// ===> Create new folder if it doesn't exist
+if (!testFolderExists)
+{
+    Directory.CreateDirectory(testFolderPath);
+    ConsoleHelper.WriteInColor("Succefully created folder TestFolder.", ConsoleColor.Green);
+}
+else
+{
+    ConsoleHelper.WriteInColor("TestFolder already exists.", ConsoleColor.DarkYellow);
+}
+
+// ===> Delete a folder
+if (Directory.Exists(testFolderPath))
+{
+    // will delete the FOLDER if it is empty, or throw exception if contains any content
+    //Directory.Delete(testFolderPath);
+    // if you send the second argument (recursive) as true it will delete the FOLDER and IT'S CONTENT
+    Directory.Delete(testFolderPath, recursive: true);
+}
 
 #endregion
 
 
+#region File
+ConsoleHelper.WriteInColor("\n================== FILE ==================\n", ConsoleColor.Cyan);
+// The File class provides static methods to create, copy, delete, move, and open files, and helps with file read/write operations
 
+// ===> Check if a file exists
+// => Determine the file's path
+testFolderPath = @"..\..\..\TestFolder";
+string fileName = "example.txt";
+
+// => using string interpolation (directory path + file name)
+//string filePath = $@"{testFolderPath}\{fileName}";
+// => using Path.Combine (BETTER WAY)
+string filePath = Path.Combine(testFolderPath, fileName);
+
+bool fileExists = File.Exists(filePath);
+
+// NOTE: When creating a file, the directory(s) in the file's path must be created prior to the file creation
+if (!Directory.Exists(testFolderPath))
+{
+    Directory.CreateDirectory(testFolderPath);
+}
+
+// ===> Create a new file
+if (!fileExists)
+{
+    // NOTE: Important to CLOSE THE CONNECTION after creating or writing to a file
+    File.Create(filePath).Close();
+    //FileStream stream = File.Create(filePath);
+    //stream.Close();
+}
+else
+{
+    ConsoleHelper.WriteInColor("File already exists.", ConsoleColor.DarkYellow);
+}
+
+// ===> Delete a file
+//if (File.Exists(filePath))
+//{
+//    File.Delete(filePath);
+//    ConsoleHelper.WriteInColor("Succefully deleted file 'example.txt'.", ConsoleColor.Green);
+//}
+
+// ===> Write to a file
+File.WriteAllText(filePath, "Hello from SEDC :)\n");
+
+// NOTE: The file get's re-writed when using WriteAllText
+//File.WriteAllText(filePath, "Hello from Avenga Academy!");
+
+// ===> Append text to a file
+File.AppendAllText(filePath, "Hello from Avenga Academy!");
+
+// ===> Read from a file
+// This reads all the text content from the specified file
+string fileContent = File.ReadAllText(filePath);
+ConsoleHelper.WriteInColor("File content:\n");
+ConsoleHelper.WriteInColor(fileContent, ConsoleColor.DarkGreen);
+
+// ===> Get File Info
+FileInfo fileInfo = new FileInfo(filePath);
+ConsoleHelper.WriteInColor("\nThe File's info: ", ConsoleColor.Blue);
+Console.WriteLine("Full Name " + fileInfo.FullName);
+Console.WriteLine("File Name " + fileInfo.Name);
+Console.WriteLine("Extension " + fileInfo.Extension);
+Console.WriteLine("Size " + fileInfo.Length + " bytes");
+Console.WriteLine("Last modified " + fileInfo.LastWriteTime);
+
+#endregion
 
 
 Console.ReadLine();
