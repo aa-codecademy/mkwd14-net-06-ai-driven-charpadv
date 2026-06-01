@@ -34,9 +34,13 @@ namespace TaxiManager9000.DataAccess
         {
             try
             {
-                T entityDb = GetById(entity.Id);
-                entityDb = entity;
+                int index = _db.FindIndex(e => e.Id == entity.Id);
+                if (index == -1) return false;
+                _db[index] = entity;
                 return true;
+                //T entityDb = GetById(entity.Id);
+                //entityDb = entity;
+                //return true;
             }
             catch (Exception ex)
             {
