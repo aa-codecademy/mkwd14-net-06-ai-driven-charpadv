@@ -1,0 +1,2 @@
+Hello again G3! This is another text in test.txt
+See you next Thursday!
