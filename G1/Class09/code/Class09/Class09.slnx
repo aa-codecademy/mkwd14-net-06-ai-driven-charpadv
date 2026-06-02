@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FileStreamsDemo/FileStreamsDemo.csproj" />
+  <Project Path="FileSystemDemo/FileSystemDemo.csproj" />
+  <Project Path="LINQ_Recap/LINQ_Recap.csproj" />
+</Solution>
