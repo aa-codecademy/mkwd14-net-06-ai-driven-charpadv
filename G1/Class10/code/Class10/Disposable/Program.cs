@@ -29,11 +29,87 @@ static void CreateFile(string path)
 CreateFolder(FolderPath);
 CreateFile(FilePath);
 
+
 #region Manual Dispose Methods
 
+void AppendTextInFile(string text, string filePath)
+{
+    StreamWriter sw = new StreamWriter(filePath, true);
+    sw.WriteLine(text);
+    sw.Dispose();
+}
 
+void ReadFromFile(string path)
+{
+    StreamReader sr = new StreamReader(path);
+    Console.WriteLine(sr.ReadToEnd());
+    sr.Dispose();
+}
+
+void ManualDisposeExample()
+{
+    ExtendedConsole.PrintInColor("Enter text part 1: ");
+    string text1 = Console.ReadLine();
+    AppendTextInFile(text1, FilePath);
+
+    ExtendedConsole.PrintInColor("Enter text part 2: ");
+    string text2 = Console.ReadLine();
+    AppendTextInFile(text2, FilePath);
+
+    ExtendedConsole.PrintInColor("Enter text part 3: ");
+    string text3 = Console.ReadLine();
+    AppendTextInFile(text3, FilePath);
+
+    Console.ReadLine();
+
+    Console.WriteLine("----------------- Read -----------------\n");
+    ReadFromFile(FilePath);
+}
 
 #endregion
 
+#region Dispose with 'using' block (BETTER WAY)
+
+void AppendTextInFileWithUsing(string text, string filePath)
+{
+    // The 'using' statement ensures that the StreamWriter is disposed of properly, even if an exception occurs.
+    // It automatically calls Dispose() at the end of the block.
+    using (StreamWriter sw = new StreamWriter(filePath, true))
+    {
+        sw.WriteLine(text);
+    }
+}
+
+void ReadFromFileWithUsing(string path)
+{
+    using StreamReader sr = new StreamReader(path);
+    Console.WriteLine(sr.ReadToEnd());
+}
+
+void UsingDisposeExample()
+{
+    ExtendedConsole.PrintInColor("Enter text part 1: ");
+    string text1 = Console.ReadLine();
+    AppendTextInFileWithUsing(text1, FilePath);
+
+    ExtendedConsole.PrintInColor("Enter text part 2: ");
+    string text2 = Console.ReadLine();
+    AppendTextInFileWithUsing(text2, FilePath);
+
+    ExtendedConsole.PrintInColor("Enter text part 3: ");
+    string text3 = Console.ReadLine();
+    AppendTextInFileWithUsing(text3, FilePath);
+
+    Console.ReadLine();
+
+    Console.WriteLine("----------------- Read -----------------\n");
+    ReadFromFileWithUsing(FilePath);
+}
+#endregion
+
+
+// Calling the examples
+//ManualDisposeExample();
+UsingDisposeExample();
 
 Console.ReadLine();
