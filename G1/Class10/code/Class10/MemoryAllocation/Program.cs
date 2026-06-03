@@ -70,7 +70,26 @@ Console.WriteLine(stringTwo); // String Two
 
 #endregion
 
+
 #region Objects Lifecycle
+ExtendedConsole.PrintInColor("\n\n=============== OBJECTS LIFECYCLE ===============\n", ConsoleColor.Yellow);
+
+static void TestObjectFinalizer()
+{
+    User bob = new User("Bob", "Bobsky", 34);
+    // ===> when using *named parameters* the order doesn't metter
+    User john = new User(age: 53, lastName: "Johnsky", firstName: "John");
+    Console.WriteLine("Logic with bob object...");
+    bob.PrintInfo();
+    Console.WriteLine("More logic...");
+    john.PrintInfo();
+    Console.WriteLine("Okay, we don't need the objects anymore. Throw them away :D");
+}
+TestObjectFinalizer();
+
+// Force garbage collection (ONLY FOR DEMONSTRATION PURPOSES)
+GC.Collect(); // Important: This is only for demo. You should never do this in code — let the GC handle it automatically
+GC.WaitForPendingFinalizers(); // Wait for the ~User() finalizers to actually run, otherwise the "destroyed" message may not print before the program continues
 
 
 #endregion
