@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Disposable/Disposable.csproj" Id="010cc609-129e-472a-a8f3-49c7478c8468" />
+  <Project Path="Helpers/Helpers.csproj" />
+  <Project Path="MemoryAllocation/MemoryAllocation.csproj" Id="f5e7552f-4467-481e-9d9b-2e5cf1ad3f5a" />
+  <Project Path="Nullable/Nullable.csproj" Id="2e6d795c-de68-4ebb-96f6-46e0f219fc1c" />
+</Solution>
