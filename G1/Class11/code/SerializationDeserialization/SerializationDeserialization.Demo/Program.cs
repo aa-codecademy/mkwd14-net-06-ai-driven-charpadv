@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Newtonsoft.Json;
 using SerializationDeserialization.Demo;
+using System.Text.Json.Serialization;
 
 Console.WriteLine("Hello, World!");
 
@@ -24,6 +26,7 @@ string filePath = Path.Combine(directoryPath, "myFirstJson.json");
 
 
 #region Manual Serialization/DeSerialization
+
 if (!Directory.Exists(directoryPath))
 {
     Directory.CreateDirectory(directoryPath);
@@ -37,7 +40,20 @@ Student bob = new Student()
     IsPartTime = false
 };
 
-WriteInFile(filePath, bob.ToString());
+string bobJson = OurJsonSerializer.SerializeStudent(bob);
+string bobJsonFromFile = ReadFromFile(filePath);
+Console.WriteLine(bobJsonFromFile);
+Student deserializedStudent = OurJsonSerializer.DeserializeStudent(bobJsonFromFile);
+
+#endregion
+
+
+#region Newtonsoft JSON serialize / deserialize
+
+string bobSerializedNewtonsoftJson = JsonConvert.SerializeObject(bob, Formatting.Indented);
+WriteInFile(filePath, bobSerializedNewtonsoftJson);
+
+Student bobDeserializedNewtonsoft = JsonConvert.DeserializeObject<Student>(bobSerializedNewtonsoftJson);
 
 #endregion
 
