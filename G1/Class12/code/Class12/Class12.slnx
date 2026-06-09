@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AsyncAwait/AsyncAwait.csproj" />
+  <Project Path="Helpers/Helpers.csproj" />
+  <Project Path="Tasks/Tasks.csproj" />
+  <Project Path="Threads/Threads.csproj" />
+</Solution>

@@ -4,3 +4,4 @@ text 3
 using part 1
 using part 2
 using part 3
+our disposing 1our disposing 2our disposing 3
