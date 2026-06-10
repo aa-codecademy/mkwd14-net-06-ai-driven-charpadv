@@ -12,7 +12,6 @@ namespace TaxiManager9000.App
         private readonly IUserService _userService;
         private readonly ICarService _carService;
         private readonly IDriverService _driverService;
-        private readonly IServiceBase<User> _serviceBase;
 
         public TaxiManagerUI()
         {
@@ -56,7 +55,6 @@ namespace TaxiManager9000.App
                         continue;
                     }
                 }
-
             }
 
             #endregion
@@ -67,7 +65,7 @@ namespace TaxiManager9000.App
             User manager = new User("JillWayne", "jillawesome1", Role.Manager);
             User maintenances = new User("GregGregsky", "supergreg1", Role.Maintenance);
             List<User> seedUsers = new List<User>() { administrator, manager, maintenances };
-            _serviceBase.Seed(seedUsers);
+            _userService.Seed(seedUsers);
 
             //Car car1 = new Car("Auris (Toyota)", "AFW950", new DateTime(2023, 12, 1));
             //Car car2 = new Car("Auris (Toyota)", "CKE480", new DateTime(2021, 10, 15));

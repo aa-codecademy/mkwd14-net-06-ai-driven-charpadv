@@ -5,18 +5,21 @@ using TaxiManager9000.Domain.Enums;
 
 public class User : BaseEntity
 {
-    private string v1;
-    private string v2;
-    private Role maintenance;
-
-    public User(string v1, string v2, Role maintenance)
-    {
-        this.v1 = v1;
-        this.v2 = v2;
-        this.maintenance = maintenance;
-    }
-
     public string Username { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
     public Role Role { get; set; }
+
+    public User(string username, string passowrd, Role role)
+    {
+        Username = username;
+        Password = passowrd;
+        Role = role;
+    }
+    public User() { }
+
+    public override string GetInfo()
+    {
+        return $"User with username: [{Username}] and role: [{Role}]";
+    }
+
 }

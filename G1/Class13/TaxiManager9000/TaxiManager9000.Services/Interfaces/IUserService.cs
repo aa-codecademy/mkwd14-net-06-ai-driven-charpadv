@@ -2,7 +2,7 @@
 
 namespace TaxiManager9000.Services.Interfaces
 {
-    public interface IUserService
+    public interface IUserService : IServiceBase<User>
     {
         User CurrentUser { get; set; }
         void LogIn(string username, string password);
