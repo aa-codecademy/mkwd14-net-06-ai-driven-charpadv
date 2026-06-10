@@ -200,7 +200,7 @@ What happens when we access Task.Result?
 
 ---
 
-## Async / Await 🔹
+## Async / Await 🔹+
 
 Async methods:
 - return Task  
