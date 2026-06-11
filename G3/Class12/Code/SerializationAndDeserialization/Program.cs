@@ -56,4 +56,4 @@ string jsonFileContent = readerWriter.ReadFromFile(filePath);
 //4. deserialize json into student obj - we need to tell the DeserializeObject method into what obj to deserialize
 Student marko = JsonConvert.DeserializeObject<Student>(jsonFileContent);
 
-Console.WriteLine(marko.Firstname + " " + marko.Lastname);
+Console.WriteLine(marko?.Firstname + " " + marko?.Lastname);
