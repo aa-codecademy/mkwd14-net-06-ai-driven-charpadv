@@ -1,4 +1,5 @@
-﻿using TaxiManager9000.Domain.Enums;
+﻿using TaxiManager9000.Domain.BaseEntity;
+using TaxiManager9000.Domain.Enums;
 using TaxiManager9000.Domain.Models;
 using TaxiManager9000.Helpers;
 using TaxiManager9000.Services.Enums;
@@ -18,6 +19,26 @@ namespace TaxiManager9000.Services.Services
                     _menuItems.Clear();
                 }
                 _menuItems = value;
+            }
+        }
+
+        public int ChooseEntitiesMenu<T>(List<T> entities) where T : BaseEntity
+        {
+            while (true)
+            {
+                Console.WriteLine("Enter a number to choose one of the following:");
+                for(int i=0; i < entities.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}) {entities[i].GetInfo()}");
+                }
+                int choise = ValidationHelper.ValidateNumberInput(Console.ReadLine(), entities.Count);
+                if(choise == -1)
+                {
+                    ConsoleHelper.PrintError("Invalid choice! Try again..");
+                    Console.Clear();
+                    continue;
+                }
+                return choise;
             }
         }
 

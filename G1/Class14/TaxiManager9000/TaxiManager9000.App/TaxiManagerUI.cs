@@ -66,7 +66,84 @@ namespace TaxiManager9000.App
                     continue;
                 }
                 MenuChoice mainMenuChoce = _uiService.MenuItems[menuChoiceNumber - 1];
+                switch (mainMenuChoce)
+                {
+                    case MenuChoice.AddNewUser:
+                        ConsoleHelper.PrintInColor("=== Add New User", ConsoleColor.Cyan);
+                        string username = ConsoleHelper.GetInput("Username: ");
+                        if (!ValidationHelper.ValidateUsername(username))
+                        {
+                            ConsoleHelper.PrintError($"{username} nust have at least 5 characters!.");
+                        }
+                        string password = ConsoleHelper.GetInput("Password:");
+                        if (!ValidationHelper.ValidatePassword(password))
+                        {
+                            ConsoleHelper.PrintError($"{username} nust have at least 5 characters!.");
+                        }
+                        int role = _uiService.ChooseMenu(new List<string>()
+                        {
+                            "Administrator",
+                            "Manager",
+                            "Maintenance"
+                        });
 
+                        try
+                        {
+                            _userService.CreateNewUser(username, password, (Role)role);
+                            ConsoleHelper.PrintSuccess("Successfully created new user.");
+                        }
+                        catch (Exception ex)
+                        {
+                            ConsoleHelper.PrintError(ex.Message);
+                            continue;
+                        }
+                        break;
+                    case MenuChoice.RemoveExistingUser:
+                        ConsoleHelper.PrintInColor("===== Remove Existing User", ConsoleColor.DarkRed);
+                        List<User> users = _userService.GetAll().Where(x => x.Id != _userService.CurrentUser.Id).ToList();
+                        int menuChoice = _uiService.ChooseEntitiesMenu(users);
+                        if (menuChoice == -1) continue;
+                        _userService.Remove(users[menuChoice - 1].Id);
+                        break;
+                    case MenuChoice.ListAllDrivers:
+                        ConsoleHelper.PrintInColor("===== List All Drivers", ConsoleColor.Blue);
+                        break;
+                    case MenuChoice.TaxiLicenseStatus:
+                        ConsoleHelper.PrintInColor("===== Taxi License Status", ConsoleColor.Cyan);
+                        break;
+                    case MenuChoice.DriverManager:
+                        ConsoleHelper.PrintInColor("===== Driver Manager", ConsoleColor.Blue);
+                        break;
+                    case MenuChoice.ListAllCars:
+                        ConsoleHelper.PrintInColor("===== List All Cars", ConsoleColor.Cyan);
+                        break;
+                    case MenuChoice.ChangePassword:
+                        ConsoleHelper.PrintInColor("===== Change Password", ConsoleColor.Blue);
+                        string oldPassword = ConsoleHelper.GetInput("Enter old password:");
+                        string newPassword = ConsoleHelper.GetInput("Enter new password");
+                        if (!ValidationHelper.ValidateStringInput(newPassword) || !ValidationHelper.ValidateStringInput(oldPassword)) {
+                            ConsoleHelper.PrintError("Please enter values!");
+                            continue;
+                        }
+                        bool changeSucc = _userService.ChangePassword(oldPassword, newPassword);
+                        if (changeSucc)
+                        {
+                            ConsoleHelper.PrintSuccess("Successfully changed password.");
+                        }
+                        else
+                        {
+                            ConsoleHelper.PrintError("Password change failed! Try again.");
+                        }
+                        break;
+                    case MenuChoice.Exit:
+                        ConsoleHelper.PrintInColor("===== Exit", ConsoleColor.Green);
+                        _userService.CurrentUser = null;
+                        continue;
+                    default:
+                        break;
+
+
+                }
                 #endregion
             }
 
